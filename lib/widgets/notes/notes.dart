@@ -30,7 +30,9 @@ class NotesWidget extends StatelessWidget {
               ),
           itemCount: 100),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, "/notes/note");
+        },
         child: const Icon(Icons.add),
       ),
     );

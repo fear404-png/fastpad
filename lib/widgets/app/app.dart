@@ -1,3 +1,4 @@
+import 'package:fastpad/widgets/notes/note/note.dart';
 import 'package:fastpad/widgets/notes/notes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -13,7 +14,10 @@ class App extends StatelessWidget {
           secondary: Colors.redAccent,
         ),
       ),
-      routes: {"/notes": (context) => const NotesWidget()},
+      routes: {
+        "/notes": (context) => const NotesWidget(),
+        "/notes/note": (context) => const NoteWidget()
+      },
       initialRoute: "/notes",
     );
   }
