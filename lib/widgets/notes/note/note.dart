@@ -8,17 +8,23 @@ class NoteWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: [Icon(Icons.back_hand)],
-      ),
+      appBar: AppBar(actions: [
+        ElevatedButton(
+          onPressed: () {},
+          child: Icon(Icons.check),
+        )
+      ]),
       body: ListTile(
         title: TextField(
           style: TextStyle(fontSize: 20),
-          decoration: InputDecoration(hintText: ("Название")),
+          decoration: InputDecoration(
+            hintText: ("Название"),
+          ),
         ),
         subtitle: TextField(
-          decoration: InputDecoration(hintText: ("Текст")),
-          maxLines: 99999999999,
+          decoration:
+              InputDecoration(hintText: ("Текст"), border: InputBorder.none),
+          maxLines: null,
         ),
       ),
     );

@@ -12,6 +12,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         colorScheme: const ColorScheme.dark().copyWith(
           secondary: Colors.redAccent,
+          primary: Colors.redAccent,
         ),
       ),
       routes: {
