@@ -1,5 +1,7 @@
+import 'package:fastpad/bloc/bloc/notes_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NotesWidget extends StatelessWidget {
   const NotesWidget({super.key});
@@ -7,28 +9,43 @@ class NotesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Записи")),
-      body: ListView.separated(
+      appBar: AppBar(
+        title: const Text("Записи"),
+        actions: [
+          TextButton(
+            onPressed: () {},
+            child: const Icon(Icons.settings),
+          )
+        ],
+      ),
+      body: BlocBuilder<NotesBloc, NotesState>(builder: (context, state) {
+        return ListView.separated(
           itemBuilder: (BuildContext context, int index) {
             return Stack(
               children: [
                 ListTile(
-                  title: Text('item $index'),
-                  subtitle: Text("eiowfgjweohweo wetiwert"),
+                  title: Text(state.notesState[index].title),
+                  subtitle: Text(state.notesState[index].subtitle),
+                  leading: const Icon(Icons.document_scanner),
+                  onTap: () {
+                    Navigator.pushNamed(context, "/notes/note");
+                  },
                 ),
                 Container(
                   padding: const EdgeInsets.all(10),
-                  child: Text("16.02.22"),
+                  child: Text(state.notesState[index].timeEdit.toString()),
                   alignment: Alignment.centerRight,
                 )
               ],
             );
           },
           separatorBuilder: (BuildContext context, int index) => const Divider(
-                color: Colors.black,
-                height: 2,
-              ),
-          itemCount: 100),
+            color: Colors.black,
+            height: 2,
+          ),
+          itemCount: state.notesState.length,
+        );
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, "/notes/note");
