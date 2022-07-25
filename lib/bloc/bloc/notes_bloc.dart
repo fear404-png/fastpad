@@ -6,19 +6,18 @@ part 'notes_state.dart';
 
 class NotesBloc extends Bloc<NotesEvent, NotesState> {
   static List<Note> notes = [];
+  static bool isEdit = true;
 
-  NotesBloc() : super(NotesInitial(notes)) {
+  NotesBloc() : super(NotesInitial(notes, isEdit)) {
     on<NotesEvent>((event, emit) {
-      if (event is NoteAdd) {
+      if (event is NoteAddEvent) {
         notes.add(event.note);
-      }
-      if (event is NoteDelete) {
+      } else if (event is NoteDeleteEvent) {
         notes.remove(event.id);
-      }
-      if (event is NoteEdit) {
+      } else if (event is NoteEditEvent) {
         notes[event.note.id] = event.note;
       }
-      emit(NotesInitial(notes));
+      emit(NotesInitial(notes, isEdit));
     });
   }
 }

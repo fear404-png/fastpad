@@ -28,13 +28,14 @@ class NotesWidget extends StatelessWidget {
                   subtitle: Text(state.notesState[index].subtitle),
                   leading: const Icon(Icons.document_scanner),
                   onTap: () {
-                    Navigator.pushNamed(context, "/notes/note");
+                    Navigator.pushNamed(context, "/notes/note",
+                        arguments: {"id": index});
                   },
                 ),
                 Container(
                   padding: const EdgeInsets.all(10),
-                  child: Text(state.notesState[index].timeEdit.toString()),
                   alignment: Alignment.centerRight,
+                  child: Text(state.notesState[index].timeEdit.toString()),
                 )
               ],
             );

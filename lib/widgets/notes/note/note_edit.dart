@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:fastpad/bloc/bloc/notes_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,16 @@ class NoteEditWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController titleController = TextEditingController();
     TextEditingController subtitleController = TextEditingController();
+
+    NotesState state = BlocProvider.of<NotesBloc>(context).state;
+    final arguments = (ModalRoute.of(context)?.settings.arguments ??
+        <String, dynamic>{}) as Map;
+
+    if (state.notesState.isNotEmpty && arguments["id"] != null) {
+      titleController.text = state.notesState[arguments["id"]].title;
+      subtitleController.text = state.notesState[arguments["id"]].subtitle;
+    }
+
     return Scaffold(
       appBar: AppBar(actions: [
         TextButton(
@@ -20,32 +32,29 @@ class NoteEditWidget extends StatelessWidget {
       ]),
       body: ListTile(
         title: TextField(
-          style: TextStyle(fontSize: 20),
-          decoration: InputDecoration(
+          style: const TextStyle(fontSize: 20),
+          decoration: const InputDecoration(
             hintText: ("Название"),
           ),
           controller: titleController,
         ),
         subtitle: TextField(
           decoration:
-              InputDecoration(hintText: ("Текст"), border: InputBorder.none),
+             const  InputDecoration(hintText: ("Текст"), border: InputBorder.none),
           maxLines: null,
           controller: subtitleController,
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          BlocProvider.of<NotesBloc>(context).add(NoteAdd(Note(
-              titleController.text,
-              subtitleController.text,
-              BlocProvider.of<NotesBloc>(context).state.notesState.length)));
-          print(titleController.text +
-              "\n" +
-              BlocProvider.of<NotesBloc>(context)
-                  .state
-                  .notesState
-                  .length
-                  .toString());
+          Note note = Note(titleController.text, subtitleController.text,
+              BlocProvider.of<NotesBloc>(context).state.notesState.length - 1);
+          if (arguments["id"] == null) {
+            BlocProvider.of<NotesBloc>(context).add(NoteAddEvent(note));
+          } else {
+            BlocProvider.of<NotesBloc>(context).add(NoteEditEvent(note));
+          }
+
           Navigator.pop(context);
         },
         child: const Icon(Icons.check),
