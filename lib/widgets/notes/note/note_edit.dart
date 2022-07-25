@@ -39,8 +39,8 @@ class NoteEditWidget extends StatelessWidget {
           controller: titleController,
         ),
         subtitle: TextField(
-          decoration:
-             const  InputDecoration(hintText: ("Текст"), border: InputBorder.none),
+          decoration: const InputDecoration(
+              hintText: ("Текст"), border: InputBorder.none),
           maxLines: null,
           controller: subtitleController,
         ),
@@ -55,7 +55,7 @@ class NoteEditWidget extends StatelessWidget {
             BlocProvider.of<NotesBloc>(context).add(NoteEditEvent(note));
           }
 
-          Navigator.pop(context);
+          Navigator.pop(context, arguments);
         },
         child: const Icon(Icons.check),
       ),

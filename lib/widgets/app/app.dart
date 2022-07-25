@@ -1,6 +1,8 @@
 import 'package:fastpad/bloc/bloc/notes_bloc.dart';
 import 'package:fastpad/widgets/notes/note/note_edit.dart';
+import 'package:fastpad/widgets/notes/note/note_view.dart';
 import 'package:fastpad/widgets/notes/notes.dart';
+import 'package:fastpad/widgets/notes/notes_setting/notes_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,7 +23,9 @@ class App extends StatelessWidget {
         ),
         routes: {
           "/notes": (context) => const NotesWidget(),
-          "/notes/note": (context) => const NoteEditWidget()
+          "/notes/note_edit": (context) => const NoteEditWidget(),
+          "/notes/note_view": (context) => const NoteViewWidget(),
+          "/notes/setting": (context) => const NotesSettingWidget(),
         },
         initialRoute: "/notes",
       ),

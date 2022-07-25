@@ -14,7 +14,9 @@ class NotesWidget extends StatelessWidget {
         title: const Text("Записи"),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, "/notes/setting");
+            },
             child: const Icon(Icons.settings),
           )
         ],
@@ -24,7 +26,7 @@ class NotesWidget extends StatelessWidget {
           itemBuilder: (BuildContext context, int index) {
             return Slidable(
               startActionPane: ActionPane(
-                motion: const ScrollMotion(),
+                motion: const StretchMotion(),
                 children: [
                   SlidableAction(
                     onPressed: (context) => BlocProvider.of<NotesBloc>(context)
@@ -43,7 +45,7 @@ class NotesWidget extends StatelessWidget {
                     subtitle: Text(state.notesState[index].subtitle),
                     leading: const Icon(Icons.document_scanner),
                     onTap: () {
-                      Navigator.pushNamed(context, "/notes/note",
+                      Navigator.pushNamed(context, "/notes/note_view",
                           arguments: {"id": index});
                     },
                   ),
@@ -65,7 +67,7 @@ class NotesWidget extends StatelessWidget {
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.pushNamed(context, "/notes/note");
+          Navigator.pushNamed(context, "/notes/note_edit");
         },
         child: const Icon(Icons.add),
       ),
