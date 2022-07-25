@@ -13,7 +13,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
       if (event is NoteAddEvent) {
         notes.add(event.note);
       } else if (event is NoteDeleteEvent) {
-        notes.remove(event.id);
+        notes.removeAt(event.id);
       } else if (event is NoteEditEvent) {
         notes[event.note.id] = event.note;
       }
