@@ -33,11 +33,6 @@ class Note {
   bool isEdit = true;
 
   Note(this.title, this.subtitle, this.id) {
-    DateTime now = DateTime.now();
-    timeEdit = DateTime(
-      now.day,
-      now.month,
-      now.year,
-    ).toString();
+    timeEdit = DateTime.now().toString().split(".")[0];
   }
 }
