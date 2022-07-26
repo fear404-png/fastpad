@@ -17,16 +17,16 @@ class NoteViewWidget extends StatelessWidget {
           appBar: AppBar(),
           body: ListTile(
             title: Text(
-              state.notesState[arguments["id"]].title,
+              state.notes[arguments["id"]].title,
               style: TextStyle(fontSize: 20),
               textAlign: TextAlign.center,
             ),
-            subtitle: Text(state.notesState[arguments["id"]].subtitle),
+            subtitle: Text(state.notes[arguments["id"]].subtitle),
           ),
           floatingActionButton: FloatingActionButton(
               onPressed: () {
                 Navigator.pushNamed(context, "/notes/note_edit",
-                    arguments: {"id": arguments["id"]});
+                    arguments: arguments);
               },
               child: const Icon(Icons.edit)),
         );

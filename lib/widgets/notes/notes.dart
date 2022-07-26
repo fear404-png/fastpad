@@ -17,7 +17,7 @@ class NotesWidget extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, "/notes/setting");
             },
-            child: const Icon(Icons.settings),
+            child: Icon(Icons.settings, color: Theme.of(context).hintColor),
           )
         ],
       ),
@@ -41,8 +41,8 @@ class NotesWidget extends StatelessWidget {
               child: Stack(
                 children: [
                   ListTile(
-                    title: Text(state.notesState[index].title),
-                    subtitle: Text(state.notesState[index].subtitle),
+                    title: Text(state.notes[index].title),
+                    subtitle: Text(state.notes[index].subtitle),
                     leading: const Icon(Icons.document_scanner),
                     onTap: () {
                       Navigator.pushNamed(context, "/notes/note_view",
@@ -52,7 +52,7 @@ class NotesWidget extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(10),
                     alignment: Alignment.centerRight,
-                    child: Text(state.notesState[index].timeEdit.toString()),
+                    child: Text(state.notes[index].timeEdit.toString()),
                   )
                 ],
               ),
@@ -62,14 +62,16 @@ class NotesWidget extends StatelessWidget {
             color: Colors.black,
             height: 2,
           ),
-          itemCount: state.notesState.length,
+          itemCount: state.notes.length,
         );
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, "/notes/note_edit");
         },
-        child: const Icon(Icons.add),
+        child: const Icon(
+          Icons.add,
+        ),
       ),
     );
   }

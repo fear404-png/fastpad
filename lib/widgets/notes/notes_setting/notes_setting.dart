@@ -6,8 +6,29 @@ class NotesSettingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> notesSettingWidgets = [
+      ListTile(
+        onTap: () {
+          Navigator.pushNamed(context, "/notes/setting/change_theme");
+        },
+        title: Text("Выбор темы"),
+        leading: Icon(Icons.theater_comedy),
+        trailing: Icon(Icons.arrow_right),
+      ),
+    ];
+
     return Scaffold(
-      appBar: AppBar(),
-    );
+        appBar: AppBar(title: Text("Настройки блокнота")),
+        body: ListView.separated(
+            itemBuilder: (BuildContext context, int index) {
+              return notesSettingWidgets[index];
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return const Divider(
+                color: Colors.black,
+                height: 2,
+              );
+            },
+            itemCount: notesSettingWidgets.length));
   }
 }

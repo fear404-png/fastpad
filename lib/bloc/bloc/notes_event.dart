@@ -17,3 +17,9 @@ class NoteEditEvent extends NotesEvent {
   Note note;
   NoteEditEvent(this.note);
 }
+
+class ChangeThemeEvent extends NotesEvent {
+  final int idTheme;
+
+  ChangeThemeEvent(this.idTheme);
+}

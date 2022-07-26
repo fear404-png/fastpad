@@ -2,6 +2,7 @@ import 'package:fastpad/bloc/bloc/notes_bloc.dart';
 import 'package:fastpad/widgets/notes/note/note_edit.dart';
 import 'package:fastpad/widgets/notes/note/note_view.dart';
 import 'package:fastpad/widgets/notes/notes.dart';
+import 'package:fastpad/widgets/notes/notes_setting/change_theme.dart';
 import 'package:fastpad/widgets/notes/notes_setting/notes_setting.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -14,20 +15,21 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => NotesBloc(),
-      child: MaterialApp(
-        theme: ThemeData(
-          colorScheme: const ColorScheme.dark().copyWith(
-            secondary: Colors.redAccent,
-            primary: Colors.redAccent,
-          ),
-        ),
-        routes: {
-          "/notes": (context) => const NotesWidget(),
-          "/notes/note_edit": (context) => const NoteEditWidget(),
-          "/notes/note_view": (context) => const NoteViewWidget(),
-          "/notes/setting": (context) => const NotesSettingWidget(),
+      child: BlocBuilder<NotesBloc, NotesState>(
+        builder: (context, state) {
+          return MaterialApp(
+            theme: state.themeData,
+            routes: {
+              "/notes": (context) => const NotesWidget(),
+              "/notes/note_edit": (context) => const NoteEditWidget(),
+              "/notes/note_view": (context) => const NoteViewWidget(),
+              "/notes/setting": (context) => const NotesSettingWidget(),
+              "/notes/setting/change_theme": (context) =>
+                  const ChangeThemeWidget(),
+            },
+            initialRoute: "/notes",
+          );
         },
-        initialRoute: "/notes",
       ),
     );
   }

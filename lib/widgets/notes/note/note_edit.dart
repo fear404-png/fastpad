@@ -18,9 +18,9 @@ class NoteEditWidget extends StatelessWidget {
     final arguments = (ModalRoute.of(context)?.settings.arguments ??
         <String, dynamic>{}) as Map;
 
-    if (state.notesState.isNotEmpty && arguments["id"] != null) {
-      titleController.text = state.notesState[arguments["id"]].title;
-      subtitleController.text = state.notesState[arguments["id"]].subtitle;
+    if (state.notes.isNotEmpty && arguments["id"] != null) {
+      titleController.text = state.notes[arguments["id"]].title;
+      subtitleController.text = state.notes[arguments["id"]].subtitle;
     }
 
     return Scaffold(
@@ -48,7 +48,7 @@ class NoteEditWidget extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Note note = Note(titleController.text, subtitleController.text,
-              BlocProvider.of<NotesBloc>(context).state.notesState.length - 1);
+              BlocProvider.of<NotesBloc>(context).state.notes.length - 1);
           if (arguments["id"] == null) {
             BlocProvider.of<NotesBloc>(context).add(NoteAddEvent(note));
           } else {

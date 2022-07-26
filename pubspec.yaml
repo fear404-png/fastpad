@@ -33,6 +33,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   bloc: ^8.0.3
   flutter_slidable: ^2.0.0
+  dropdown_textfield: ^1.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
