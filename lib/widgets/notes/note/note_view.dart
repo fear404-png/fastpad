@@ -17,7 +17,7 @@ class NoteViewWidget extends StatelessWidget {
           appBar: AppBar(),
           body: ListTile(
             title: Text(
-              state.notes[arguments["id"]].title,
+              "\n" + state.notes[arguments["id"]].title + "\n",
               style: TextStyle(fontSize: 20),
               textAlign: TextAlign.center,
             ),

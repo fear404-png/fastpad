@@ -17,9 +17,13 @@ class NotesWidget extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, "/notes/setting");
             },
-            child: Icon(Icons.settings, color: Theme.of(context).hintColor),
+            child: Icon(Icons.settings,
+                color: Theme.of(context).colorScheme.onError),
           )
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(),
       ),
       body: BlocBuilder<NotesBloc, NotesState>(builder: (context, state) {
         return ListView.separated(
@@ -31,30 +35,34 @@ class NotesWidget extends StatelessWidget {
                   SlidableAction(
                     onPressed: (context) => BlocProvider.of<NotesBloc>(context)
                         .add(NoteDeleteEvent(index)),
-                    backgroundColor: Color(0xFFFE4A49),
+                    backgroundColor: Colors.redAccent,
                     foregroundColor: Colors.white,
                     icon: Icons.delete,
                     label: 'Delete',
                   ),
                 ],
               ),
-              child: Stack(
-                children: [
-                  ListTile(
-                    title: Text(state.notes[index].title),
-                    subtitle: Text(state.notes[index].subtitle),
-                    leading: const Icon(Icons.document_scanner),
-                    onTap: () {
-                      Navigator.pushNamed(context, "/notes/note_view",
-                          arguments: {"id": index});
-                    },
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    alignment: Alignment.centerRight,
-                    child: Text(state.notes[index].timeEdit.toString()),
-                  )
-                ],
+              child: ListTile(
+                title: RichText(
+                  text: TextSpan(
+                      text: state.notes[index].title,
+                      style: state.themeData.textTheme.headline6),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                subtitle: RichText(
+                  text: TextSpan(
+                      text: state.notes[index].subtitle,
+                      style: state.themeData.textTheme.subtitle2),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                leading: const Icon(Icons.document_scanner),
+                trailing: Text(state.notes[index].timeEdit.toString()),
+                onTap: () {
+                  Navigator.pushNamed(context, "/notes/note_view",
+                      arguments: {"id": index});
+                },
               ),
             );
           },

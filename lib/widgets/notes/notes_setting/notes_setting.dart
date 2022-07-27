@@ -15,6 +15,14 @@ class NotesSettingWidget extends StatelessWidget {
         leading: Icon(Icons.theater_comedy),
         trailing: Icon(Icons.arrow_right),
       ),
+      ListTile(
+        onTap: () {
+          Navigator.pushNamed(context, "/notes/setting/change_font");
+        },
+        title: Text("Выбор шрифта"),
+        leading: Icon(Icons.font_download_sharp),
+        trailing: Icon(Icons.arrow_right),
+      ),
     ];
 
     return Scaffold(

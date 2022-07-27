@@ -4,7 +4,7 @@ part of 'notes_bloc.dart';
 abstract class NotesState {
   final List<Note> notes;
   final bool isEdit;
-  final themeData;
+  final ThemeData themeData;
 
   NotesState(this.notes, this.isEdit, this.themeData);
 }

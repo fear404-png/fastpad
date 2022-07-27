@@ -23,3 +23,9 @@ class ChangeThemeEvent extends NotesEvent {
 
   ChangeThemeEvent(this.idTheme);
 }
+
+class ChangeFontEvent extends NotesEvent {
+  final int idFont;
+
+  ChangeFontEvent(this.idFont);
+}
