@@ -30,13 +30,13 @@ final List<ThemeData> appThemeData = [
           .copyWith(onError: Colors.black)),
   ThemeData(
       colorScheme:
-          ColorScheme.highContrastDark().copyWith(onError: Colors.white))
+          const ColorScheme.highContrastDark().copyWith(onError: Colors.white))
 ];
 
 final List<String> appThemeName = [
   "Темная Стандарт",
-  "Темная Хакерская ",
-  "Светлая Стандарт",
-  "Светлая Агрессия ",
-  "На расслабоне :)"
+  "Терминал",
+  "Стандарт",
+  "Агрессия ",
+  "Спокойствие"
 ];
