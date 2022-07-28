@@ -41,6 +41,14 @@ class NotesSettingWidget extends StatelessWidget {
           );
         },
       ),
+      ListTile(
+        onTap: () {
+          Navigator.pushNamed(context, "/notes/setting/change_font");
+        },
+        title: const Text("Безопасность"),
+        leading: const Icon(Icons.lock),
+        trailing: const Icon(Icons.arrow_right),
+      ),
     ];
 
     return Scaffold(

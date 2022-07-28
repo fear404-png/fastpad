@@ -1,4 +1,5 @@
 import 'package:fastpad/bloc/bloc/notes_bloc.dart';
+import 'package:fastpad/pages/login.dart';
 import 'package:fastpad/pages/notes/note/note_edit.dart';
 import 'package:fastpad/pages/notes/note/note_view.dart';
 import 'package:fastpad/pages/notes/notes.dart';
@@ -30,8 +31,9 @@ class App extends StatelessWidget {
                   const ChangeThemeWidget(),
               "/notes/setting/change_font": (context) =>
                   const ChangeFontWidget(),
+              "/login": (context) => const LoginWidget(),
             },
-            initialRoute: "/notes",
+            initialRoute: state.password != "" ? "/login" : "/notes",
           );
         },
       ),

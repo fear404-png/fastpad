@@ -8,9 +8,15 @@ abstract class NotesState {
 
   final double fontSizeMultiplier;
 
-  NotesState(this.notes, this.themeData, this.fontSizeMultiplier);
+  final String password;
+
+  final bool isLogin;
+
+  NotesState(this.notes, this.themeData, this.fontSizeMultiplier, this.password,
+      this.isLogin);
 }
 
 class NotesInitial extends NotesState {
-  NotesInitial(super.notesState, super.themeData, super.fontSizeMultiplier);
+  NotesInitial(super.notes, super.themeData, super.fontSizeMultiplier,
+      super.password, super.isLogin);
 }

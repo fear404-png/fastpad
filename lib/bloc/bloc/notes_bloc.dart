@@ -11,6 +11,9 @@ part 'notes_state.dart';
 class NotesBloc extends Bloc<NotesEvent, NotesState> {
   static List<Note> notes = [];
 
+  static String password = "1234";
+  static bool isLogin = password == "" ? true : false;
+
   static int currentFont = 5;
   static int currentTheme = 0;
   static double textSizeMultiplier = 1;
@@ -72,7 +75,9 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         letterSpacing: 1.5),
   ).apply(bodyColor: appThemeData[currentTheme].colorScheme.onError));
 
-  NotesBloc() : super(NotesInitial(notes, themeApp, textSizeMultiplier)) {
+  NotesBloc()
+      : super(NotesInitial(
+            notes, themeApp, textSizeMultiplier, password, isLogin)) {
     on<NotesEvent>((event, emit) {
       if (event is NoteAddEvent) {
         notes.add(event.note);
@@ -252,8 +257,14 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
                         letterSpacing: 1.5))
                 .apply(
                     bodyColor: appThemeData[currentTheme].colorScheme.onError));
+      } else if (event is CheckPasswordEvent) {
+        if (event.password == password) {
+          isLogin = true;
+          NotesInitial(notes, themeApp, textSizeMultiplier, password, isLogin);
+        }
       }
-      emit(NotesInitial(notes, themeApp, textSizeMultiplier));
+      emit(
+          NotesInitial(notes, themeApp, textSizeMultiplier, password, isLogin));
     });
   }
 }

@@ -35,3 +35,9 @@ class ChangeTextSizeEvent extends NotesEvent {
 
   ChangeTextSizeEvent(this.size);
 }
+
+class CheckPasswordEvent extends NotesEvent {
+  final String password;
+
+  CheckPasswordEvent(this.password);
+}
