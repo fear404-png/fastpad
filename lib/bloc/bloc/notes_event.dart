@@ -29,3 +29,9 @@ class ChangeFontEvent extends NotesEvent {
 
   ChangeFontEvent(this.idFont);
 }
+
+class ChangeTextSizeEvent extends NotesEvent {
+  final double size;
+
+  ChangeTextSizeEvent(this.size);
+}

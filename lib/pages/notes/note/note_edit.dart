@@ -32,7 +32,7 @@ class NoteEditWidget extends StatelessWidget {
       ]),
       body: ListTile(
         title: TextField(
-          style: const TextStyle(fontSize: 20),
+          style: Theme.of(context).textTheme.titleLarge,
           decoration: const InputDecoration(
             hintText: ("Название"),
           ),

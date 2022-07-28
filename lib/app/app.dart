@@ -1,10 +1,11 @@
 import 'package:fastpad/bloc/bloc/notes_bloc.dart';
-import 'package:fastpad/widgets/notes/note/note_edit.dart';
-import 'package:fastpad/widgets/notes/note/note_view.dart';
-import 'package:fastpad/widgets/notes/notes.dart';
-import 'package:fastpad/widgets/notes/notes_setting/change_font.dart';
-import 'package:fastpad/widgets/notes/notes_setting/change_theme.dart';
-import 'package:fastpad/widgets/notes/notes_setting/notes_setting.dart';
+import 'package:fastpad/pages/notes/note/note_edit.dart';
+import 'package:fastpad/pages/notes/note/note_view.dart';
+import 'package:fastpad/pages/notes/notes.dart';
+import 'package:fastpad/pages/notes/notes_setting/change_font.dart';
+import 'package:fastpad/pages/notes/notes_setting/change_theme.dart';
+import 'package:fastpad/pages/notes/notes_setting/notes_setting.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
