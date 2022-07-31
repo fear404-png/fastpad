@@ -14,65 +14,41 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   static String password = "1234";
   static bool isLogin = password == "" ? true : false;
 
-  static int currentFont = 5;
+  static int currentFont = 4;
   static int currentTheme = 0;
   static double textSizeMultiplier = 1;
 
 //я устал писать это...
   static ThemeData themeApp = appThemeData[currentTheme].copyWith(
       textTheme: TextTheme(
-    headline1: appFonts[currentFont].copyWith(
-        fontSize: 97 * textSizeMultiplier,
-        fontWeight: FontWeight.w300,
-        letterSpacing: -1.5),
-    headline2: appFonts[currentFont].copyWith(
-        fontSize: 61 * textSizeMultiplier,
-        fontWeight: FontWeight.w300,
-        letterSpacing: -0.5),
+    headline1: appFonts[currentFont]
+        .copyWith(fontSize: 97 * textSizeMultiplier, letterSpacing: -1.5),
+    headline2: appFonts[currentFont]
+        .copyWith(fontSize: 61 * textSizeMultiplier, letterSpacing: -0.5),
     headline3: appFonts[currentFont].copyWith(
       fontSize: 48 * textSizeMultiplier,
-      fontWeight: FontWeight.w400,
     ),
-    headline4: appFonts[currentFont].copyWith(
-        fontSize: 34 * textSizeMultiplier,
-        fontWeight: FontWeight.w400,
-        letterSpacing: 0.25),
+    headline4: appFonts[currentFont]
+        .copyWith(fontSize: 34 * textSizeMultiplier, letterSpacing: 0.25),
     headline5: appFonts[currentFont].copyWith(
       fontSize: 24 * textSizeMultiplier,
-      fontWeight: FontWeight.w400,
     ),
-    headline6: appFonts[currentFont].copyWith(
-        fontSize: 20 * textSizeMultiplier,
-        fontWeight: FontWeight.w500,
-        letterSpacing: 0.15),
-    subtitle1: appFonts[currentFont].copyWith(
-        fontSize: 16 * textSizeMultiplier,
-        fontWeight: FontWeight.w400,
-        letterSpacing: 0.15),
-    subtitle2: appFonts[currentFont].copyWith(
-        fontSize: 14 * textSizeMultiplier,
-        fontWeight: FontWeight.w500,
-        letterSpacing: 0.1),
-    bodyText1: appFonts[currentFont].copyWith(
-        fontSize: 16 * textSizeMultiplier,
-        fontWeight: FontWeight.w500,
-        letterSpacing: 0.5),
-    bodyText2: appFonts[currentFont].copyWith(
-        fontSize: 14 * textSizeMultiplier,
-        fontWeight: FontWeight.w400,
-        letterSpacing: 0.25),
-    button: appFonts[currentFont].copyWith(
-        fontSize: 14 * textSizeMultiplier,
-        fontWeight: FontWeight.w500,
-        letterSpacing: 1.25),
-    caption: appFonts[currentFont].copyWith(
-        fontSize: 12 * textSizeMultiplier,
-        fontWeight: FontWeight.w400,
-        letterSpacing: 0.4),
-    overline: appFonts[currentFont].copyWith(
-        fontSize: 10 * textSizeMultiplier,
-        fontWeight: FontWeight.w400,
-        letterSpacing: 1.5),
+    headline6: appFonts[currentFont]
+        .copyWith(fontSize: 20 * textSizeMultiplier, letterSpacing: 0.15),
+    subtitle1: appFonts[currentFont]
+        .copyWith(fontSize: 16 * textSizeMultiplier, letterSpacing: 0.15),
+    subtitle2: appFonts[currentFont]
+        .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 0.1),
+    bodyText1: appFonts[currentFont]
+        .copyWith(fontSize: 16 * textSizeMultiplier, letterSpacing: 0.5),
+    bodyText2: appFonts[currentFont]
+        .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 0.25),
+    button: appFonts[currentFont]
+        .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 1.25),
+    caption: appFonts[currentFont]
+        .copyWith(fontSize: 12 * textSizeMultiplier, letterSpacing: 0.4),
+    overline: appFonts[currentFont]
+        .copyWith(fontSize: 10 * textSizeMultiplier, letterSpacing: 1.5),
   ).apply(bodyColor: appThemeData[currentTheme].colorScheme.onError));
 
   NotesBloc()
@@ -89,174 +65,68 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         currentTheme = event.idTheme;
         themeApp = appThemeData[currentTheme].copyWith(
             textTheme: TextTheme(
-          headline1: appFonts[currentFont].copyWith(
-              fontSize: 97 * textSizeMultiplier,
-              fontWeight: FontWeight.w300,
-              letterSpacing: -1.5),
-          headline2: appFonts[currentFont].copyWith(
-              fontSize: 61 * textSizeMultiplier,
-              fontWeight: FontWeight.w300,
-              letterSpacing: -0.5),
+          headline1: appFonts[currentFont]
+              .copyWith(fontSize: 97 * textSizeMultiplier, letterSpacing: -1.5),
+          headline2: appFonts[currentFont]
+              .copyWith(fontSize: 61 * textSizeMultiplier, letterSpacing: -0.5),
           headline3: appFonts[currentFont].copyWith(
             fontSize: 48 * textSizeMultiplier,
-            fontWeight: FontWeight.w400,
           ),
-          headline4: appFonts[currentFont].copyWith(
-              fontSize: 34 * textSizeMultiplier,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.25),
+          headline4: appFonts[currentFont]
+              .copyWith(fontSize: 34 * textSizeMultiplier, letterSpacing: 0.25),
           headline5: appFonts[currentFont].copyWith(
             fontSize: 24 * textSizeMultiplier,
-            fontWeight: FontWeight.w400,
           ),
-          headline6: appFonts[currentFont].copyWith(
-              fontSize: 20 * textSizeMultiplier,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.15),
-          subtitle1: appFonts[currentFont].copyWith(
-              fontSize: 16 * textSizeMultiplier,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.15),
-          subtitle2: appFonts[currentFont].copyWith(
-              fontSize: 14 * textSizeMultiplier,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.1),
-          bodyText1: appFonts[currentFont].copyWith(
-              fontSize: 16 * textSizeMultiplier,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.5),
-          bodyText2: appFonts[currentFont].copyWith(
-              fontSize: 14 * textSizeMultiplier,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.25),
-          button: appFonts[currentFont].copyWith(
-              fontSize: 14 * textSizeMultiplier,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 1.25),
-          caption: appFonts[currentFont].copyWith(
-              fontSize: 12 * textSizeMultiplier,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.4),
-          overline: appFonts[currentFont].copyWith(
-              fontSize: 10 * textSizeMultiplier,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 1.5),
-        ).apply(bodyColor: appThemeData[currentTheme].colorScheme.onError));
-      } else if (event is ChangeFontEvent) {
-        currentFont = event.idFont;
-        themeApp = appThemeData[currentTheme].copyWith(
-            textTheme: TextTheme(
-          headline1: appFonts[currentFont].copyWith(
-              fontSize: 97 * textSizeMultiplier,
-              fontWeight: FontWeight.w300,
-              letterSpacing: -1.5),
-          headline2: appFonts[currentFont].copyWith(
-              fontSize: 61 * textSizeMultiplier,
-              fontWeight: FontWeight.w300,
-              letterSpacing: -0.5),
-          headline3: appFonts[currentFont].copyWith(
-            fontSize: 48 * textSizeMultiplier,
-            fontWeight: FontWeight.w400,
-          ),
-          headline4: appFonts[currentFont].copyWith(
-              fontSize: 34 * textSizeMultiplier,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.25),
-          headline5: appFonts[currentFont].copyWith(
-            fontSize: 24 * textSizeMultiplier,
-            fontWeight: FontWeight.w400,
-          ),
-          headline6: appFonts[currentFont].copyWith(
-              fontSize: 20 * textSizeMultiplier,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.15),
-          subtitle1: appFonts[currentFont].copyWith(
-              fontSize: 16 * textSizeMultiplier,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.15),
-          subtitle2: appFonts[currentFont].copyWith(
-              fontSize: 14 * textSizeMultiplier,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.1),
-          bodyText1: appFonts[currentFont].copyWith(
-              fontSize: 16 * textSizeMultiplier,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 0.5),
-          bodyText2: appFonts[currentFont].copyWith(
-              fontSize: 14 * textSizeMultiplier,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.25),
-          button: appFonts[currentFont].copyWith(
-              fontSize: 14 * textSizeMultiplier,
-              fontWeight: FontWeight.w500,
-              letterSpacing: 1.25),
-          caption: appFonts[currentFont].copyWith(
-              fontSize: 12 * textSizeMultiplier,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 0.4),
-          overline: appFonts[currentFont].copyWith(
-              fontSize: 10 * textSizeMultiplier,
-              fontWeight: FontWeight.w400,
-              letterSpacing: 1.5),
+          headline6: appFonts[currentFont]
+              .copyWith(fontSize: 20 * textSizeMultiplier, letterSpacing: 0.15),
+          subtitle1: appFonts[currentFont]
+              .copyWith(fontSize: 16 * textSizeMultiplier, letterSpacing: 0.15),
+          subtitle2: appFonts[currentFont]
+              .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 0.1),
+          bodyText1: appFonts[currentFont]
+              .copyWith(fontSize: 16 * textSizeMultiplier, letterSpacing: 0.5),
+          bodyText2: appFonts[currentFont]
+              .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 0.25),
+          button: appFonts[currentFont]
+              .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 1.25),
+          caption: appFonts[currentFont]
+              .copyWith(fontSize: 12 * textSizeMultiplier, letterSpacing: 0.4),
+          overline: appFonts[currentFont]
+              .copyWith(fontSize: 10 * textSizeMultiplier, letterSpacing: 1.5),
         ).apply(bodyColor: appThemeData[currentTheme].colorScheme.onError));
       } else if (event is ChangeTextSizeEvent) {
         textSizeMultiplier = event.size;
         themeApp = appThemeData[currentTheme].copyWith(
             textTheme: TextTheme(
-                    headline1: appFonts[currentFont].copyWith(
-                        fontSize: 97 * textSizeMultiplier,
-                        fontWeight: FontWeight.w300,
-                        letterSpacing: -1.5),
-                    headline2: appFonts[currentFont].copyWith(
-                        fontSize: 61 * textSizeMultiplier,
-                        fontWeight: FontWeight.w300,
-                        letterSpacing: -0.5),
-                    headline3: appFonts[currentFont].copyWith(
-                      fontSize: 48 * textSizeMultiplier,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    headline4: appFonts[currentFont].copyWith(
-                        fontSize: 34 * textSizeMultiplier,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 0.25),
-                    headline5: appFonts[currentFont].copyWith(
-                      fontSize: 24 * textSizeMultiplier,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    headline6: appFonts[currentFont].copyWith(
-                        fontSize: 20 * textSizeMultiplier,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 0.15),
-                    subtitle1: appFonts[currentFont].copyWith(
-                        fontSize: 16 * textSizeMultiplier,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 0.15),
-                    subtitle2: appFonts[currentFont].copyWith(
-                        fontSize: 14 * textSizeMultiplier,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 0.1),
-                    bodyText1: appFonts[currentFont].copyWith(
-                        fontSize: 16 * textSizeMultiplier,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 0.5),
-                    bodyText2: appFonts[currentFont].copyWith(
-                        fontSize: 14 * textSizeMultiplier,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 0.25),
-                    button: appFonts[currentFont].copyWith(
-                        fontSize: 14 * textSizeMultiplier,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 1.25),
-                    caption: appFonts[currentFont].copyWith(
-                        fontSize: 12 * textSizeMultiplier,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 0.4),
-                    overline: appFonts[currentFont].copyWith(
-                        fontSize: 10 * textSizeMultiplier,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 1.5))
-                .apply(
-                    bodyColor: appThemeData[currentTheme].colorScheme.onError));
+          headline1: appFonts[currentFont]
+              .copyWith(fontSize: 97 * textSizeMultiplier, letterSpacing: -1.5),
+          headline2: appFonts[currentFont]
+              .copyWith(fontSize: 61 * textSizeMultiplier, letterSpacing: -0.5),
+          headline3: appFonts[currentFont].copyWith(
+            fontSize: 48 * textSizeMultiplier,
+          ),
+          headline4: appFonts[currentFont]
+              .copyWith(fontSize: 34 * textSizeMultiplier, letterSpacing: 0.25),
+          headline5: appFonts[currentFont].copyWith(
+            fontSize: 24 * textSizeMultiplier,
+          ),
+          headline6: appFonts[currentFont]
+              .copyWith(fontSize: 20 * textSizeMultiplier, letterSpacing: 0.15),
+          subtitle1: appFonts[currentFont]
+              .copyWith(fontSize: 16 * textSizeMultiplier, letterSpacing: 0.15),
+          subtitle2: appFonts[currentFont]
+              .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 0.1),
+          bodyText1: appFonts[currentFont]
+              .copyWith(fontSize: 16 * textSizeMultiplier, letterSpacing: 0.5),
+          bodyText2: appFonts[currentFont]
+              .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 0.25),
+          button: appFonts[currentFont]
+              .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 1.25),
+          caption: appFonts[currentFont]
+              .copyWith(fontSize: 12 * textSizeMultiplier, letterSpacing: 0.4),
+          overline: appFonts[currentFont]
+              .copyWith(fontSize: 10 * textSizeMultiplier, letterSpacing: 1.5),
+        ).apply(bodyColor: appThemeData[currentTheme].colorScheme.onError));
       } else if (event is CheckPasswordEvent) {
         if (event.password == password) {
           isLogin = true;

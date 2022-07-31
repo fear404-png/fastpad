@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 final List<TextStyle> appFonts = [
-  GoogleFonts.badScript(),
-  GoogleFonts.cormorantSc(),
-  GoogleFonts.montserrat(),
-  GoogleFonts.rubik(),
-  GoogleFonts.rubikGlitch(),
-  GoogleFonts.ubuntuMono(),
-  GoogleFonts.ubuntu()
+  const TextStyle(fontFamily: "BadScript"),
+  const TextStyle(fontFamily: "CormorantSC"),
+  const TextStyle(fontFamily: "Montserrat"),
+  const TextStyle(fontFamily: "Roboto"),
+  const TextStyle(fontFamily: "Rubik"),
+  const TextStyle(fontFamily: "RubikGlitch"),
+  const TextStyle(fontFamily: "UbuntuMono"),
 ];
