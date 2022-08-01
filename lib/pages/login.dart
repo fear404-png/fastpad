@@ -1,7 +1,7 @@
 import 'package:fastpad/bloc/bloc/notes_bloc.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginWidget extends StatelessWidget {
@@ -9,7 +9,7 @@ class LoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _passwordController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
 
     return BlocBuilder<NotesBloc, NotesState>(
       builder: (context, state) {
@@ -25,12 +25,13 @@ class LoginWidget extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   TextField(
-                    controller: _passwordController,
+                    controller: passwordController,
                     onChanged: (value) {
                       BlocProvider.of<NotesBloc>(context)
-                          .add(CheckPasswordEvent(_passwordController.text));
+                          .add(CheckPasswordEvent(passwordController.text));
                     },
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.headline4?.copyWith(
+                        color: Theme.of(context).colorScheme.onError),
                     textAlign: TextAlign.center,
                     obscureText: true,
                     decoration: const InputDecoration(

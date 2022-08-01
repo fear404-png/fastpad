@@ -3,19 +3,23 @@ part of 'notes_bloc.dart';
 @immutable
 abstract class NotesEvent {}
 
+// ignore: must_be_immutable
 class NoteAddEvent extends NotesEvent {
-  Note note;
+  NoteModel note;
   NoteAddEvent(this.note);
 }
 
+// ignore: must_be_immutable
 class NoteDeleteEvent extends NotesEvent {
-  int id;
+  final int id;
   NoteDeleteEvent(this.id);
 }
 
+// ignore: must_be_immutable
 class NoteEditEvent extends NotesEvent {
-  Note note;
-  NoteEditEvent(this.note);
+  final NoteModel note;
+  final int id;
+  NoteEditEvent(this.note, this.id);
 }
 
 class ChangeThemeEvent extends NotesEvent {

@@ -1,10 +1,10 @@
-import 'dart:ui';
-
 import 'package:fastpad/bloc/bloc/notes_bloc.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:fastpad/hive/note_model.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 
 class NoteEditWidget extends StatelessWidget {
   const NoteEditWidget({super.key});
@@ -47,12 +47,15 @@ class NoteEditWidget extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Note note = Note(titleController.text, subtitleController.text,
+          NoteModel note = NoteModel(
+              titleController.text,
+              subtitleController.text,
               BlocProvider.of<NotesBloc>(context).state.notes.length - 1);
           if (arguments["id"] == null) {
             BlocProvider.of<NotesBloc>(context).add(NoteAddEvent(note));
           } else {
-            BlocProvider.of<NotesBloc>(context).add(NoteEditEvent(note));
+            BlocProvider.of<NotesBloc>(context)
+                .add(NoteEditEvent(note, arguments["id"]));
           }
 
           Navigator.pop(context, arguments);

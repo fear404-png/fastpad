@@ -8,7 +8,7 @@ import 'package:fastpad/pages/notes/notes_setting/change_theme.dart';
 import 'package:fastpad/pages/notes/notes_setting/notes_setting.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class App extends StatelessWidget {
