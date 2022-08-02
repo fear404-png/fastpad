@@ -16,6 +16,17 @@ void main() async {
 
   await Hive.openBox<NoteModel>("notes");
 
+  if (Hive.box("login").isEmpty) {
+    Hive.box("login").put(0, "");
+    Hive.box("login").put(1, "");
+  }
+
+  if (Hive.box("settings").isEmpty) {
+    Hive.box("settings").put(0, 6);
+    Hive.box("settings").put(1, 0);
+    Hive.box("settings").put(2, 1);
+  }
+
   const app = App();
   runApp(app);
 }
