@@ -10,6 +10,7 @@ void main() async {
   if (!Hive.isAdapterRegistered(1)) {
     Hive.registerAdapter(NoteModelAdapter());
   }
+  await Hive.openBox<dynamic>("login");
 
   await Hive.openBox<dynamic>("settings");
 

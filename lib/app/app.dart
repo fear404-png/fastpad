@@ -6,6 +6,7 @@ import 'package:fastpad/pages/notes/notes.dart';
 import 'package:fastpad/pages/notes/notes_setting/change_font.dart';
 import 'package:fastpad/pages/notes/notes_setting/change_theme.dart';
 import 'package:fastpad/pages/notes/notes_setting/notes_setting.dart';
+import 'package:fastpad/pages/notes/notes_setting/security.dart';
 
 import 'package:flutter/material.dart';
 
@@ -31,9 +32,10 @@ class App extends StatelessWidget {
                   const ChangeThemeWidget(),
               "/notes/setting/change_font": (context) =>
                   const ChangeFontWidget(),
+              "/notes/setting/security": (context) => const SecurityWidget(),
               "/login": (context) => const LoginWidget(),
             },
-            initialRoute: state.password != "" ? "/login" : "/notes",
+            initialRoute: state.isLogin ? "/notes" : "/login",
           );
         },
       ),

@@ -3,19 +3,16 @@ part of 'notes_bloc.dart';
 @immutable
 abstract class NotesEvent {}
 
-// ignore: must_be_immutable
 class NoteAddEvent extends NotesEvent {
   NoteModel note;
   NoteAddEvent(this.note);
 }
 
-// ignore: must_be_immutable
 class NoteDeleteEvent extends NotesEvent {
   final int id;
   NoteDeleteEvent(this.id);
 }
 
-// ignore: must_be_immutable
 class NoteEditEvent extends NotesEvent {
   final NoteModel note;
   final int id;
@@ -44,4 +41,36 @@ class CheckPasswordEvent extends NotesEvent {
   final String password;
 
   CheckPasswordEvent(this.password);
+}
+
+class ChangeSecureParam extends NotesEvent {
+  final bool isSecure;
+
+  ChangeSecureParam(this.isSecure);
+}
+
+class FuckItEvent extends NotesEvent {
+  final bool fuckIt;
+
+  FuckItEvent(this.fuckIt);
+}
+
+class ChangePassword extends NotesEvent {
+  final String password;
+  final String helpText;
+
+  ChangePassword(this.password, this.helpText);
+}
+
+class PasswordRegistrationError extends NotesEvent {
+  final String erorrText;
+
+  PasswordRegistrationError(this.erorrText);
+}
+
+class PasswordRegistrationSuccessful extends NotesEvent {
+  final String password;
+  final String helpText;
+
+  PasswordRegistrationSuccessful(this.password, this.helpText);
 }

@@ -42,7 +42,7 @@ class NotesSettingWidget extends StatelessWidget {
       ),
       ListTile(
         onTap: () {
-          Navigator.pushNamed(context, "/notes/setting/change_font");
+          Navigator.pushNamed(context, "/notes/setting/security");
         },
         title: const Text("Безопасность"),
         leading: const Icon(Icons.lock),

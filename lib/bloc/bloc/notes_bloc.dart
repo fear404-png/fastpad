@@ -3,6 +3,7 @@ import 'package:fastpad/hive/note_model.dart';
 
 import 'package:fastpad/theme/app_themes.dart';
 import 'package:fastpad/theme/app_fonts.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -13,8 +14,14 @@ part 'notes_state.dart';
 class NotesBloc extends Bloc<NotesEvent, NotesState> {
   static List<NoteModel> notes = Hive.box<NoteModel>("notes").values.toList();
 
-  static String password = "1234";
+  static String password = Hive.box("login").get(0);
+  static String helpText = Hive.box("login").get(1);
+  static String erorrTextPasswordRegistration = "";
+
   static bool isLogin = password == "" ? true : false;
+  static bool isSecure = password == "" ? false : true;
+  static bool fuckIt = isSecure;
+  static bool isErrorInPasswordRegistration = false;
 
   static int currentFont = Hive.box("settings").get(0);
   static int currentTheme = Hive.box("settings").get(1);
@@ -56,7 +63,12 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
             ).apply(bodyColor: appThemeData[currentTheme].colorScheme.onError)),
             textSizeMultiplier,
             password,
-            isLogin)) {
+            isLogin,
+            isSecure,
+            fuckIt,
+            helpText,
+            erorrTextPasswordRegistration,
+            isErrorInPasswordRegistration)) {
     on<NotesEvent>((event, emit) {
       if (event is NoteAddEvent) {
         notes.add(event.note);
@@ -85,7 +97,27 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         if (event.password == password) {
           isLogin = true;
         }
+      } else if (event is ChangeSecureParam) {
+        isSecure = event.isSecure;
+        if (!isSecure) {
+          password = "";
+          helpText = "";
+          Hive.box("login").put(0, password);
+          Hive.box("login").put(1, helpText);
+        }
+      } else if (event is FuckItEvent) {
+        fuckIt = event.fuckIt;
+      } else if (event is PasswordRegistrationError) {
+        erorrTextPasswordRegistration = event.erorrText;
+        isErrorInPasswordRegistration = true;
+      } else if (event is PasswordRegistrationSuccessful) {
+        isErrorInPasswordRegistration = false;
+        password = event.password;
+        helpText = event.helpText;
+        Hive.box("login").put(0, password);
+        Hive.box("login").put(1, helpText);
       }
+
       emit(NotesInitial(
           notes,
           appThemeData[currentTheme].copyWith(
@@ -121,7 +153,12 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
           ).apply(bodyColor: appThemeData[currentTheme].colorScheme.onError)),
           textSizeMultiplier,
           password,
-          isLogin));
+          isLogin,
+          isSecure,
+          fuckIt,
+          helpText,
+          erorrTextPasswordRegistration,
+          isErrorInPasswordRegistration));
     });
   }
 }

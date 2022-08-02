@@ -34,8 +34,8 @@ class LoginWidget extends StatelessWidget {
                         color: Theme.of(context).colorScheme.onError),
                     textAlign: TextAlign.center,
                     obscureText: true,
-                    decoration: const InputDecoration(
-                        helperText: "Подсказка: 1234",
+                    decoration: InputDecoration(
+                        helperText: "Подсказка: ${state.helpText}",
                         semanticCounterText: "*"),
                   ),
                   const SizedBox(
