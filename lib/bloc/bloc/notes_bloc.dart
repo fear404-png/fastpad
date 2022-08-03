@@ -12,10 +12,12 @@ part 'notes_event.dart';
 part 'notes_state.dart';
 
 class NotesBloc extends Bloc<NotesEvent, NotesState> {
-  static List<NoteModel> notes = Hive.box<NoteModel>("notes").values.toList();
+  static List<NoteModel> notes =
+      Hive.box<NoteModel>("notes").values.toList() ?? [];
 
-  static String password = Hive.box("login").get(0);
-  static String helpText = Hive.box("login").get(1);
+  static String password = Hive.box("login").get(0) ?? "";
+
+  static String helpText = Hive.box("login").get(1) ?? "";
   static String erorrTextPasswordRegistration = "";
 
   static bool isLogin = password == "" ? true : false;
@@ -23,9 +25,10 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   static bool fuckIt = isSecure;
   static bool isErrorInPasswordRegistration = false;
 
-  static int currentFont = Hive.box("settings").get(0);
-  static int currentTheme = Hive.box("settings").get(1);
-  static double textSizeMultiplier = Hive.box("settings").get(2);
+  static int currentFont = Hive.box("settings").get(0) ?? 6;
+  static int currentTheme = Hive.box("settings").get(1) ?? 0;
+  static double textSizeMultiplier =
+      Hive.box("settings").get(2) == null ? 1.1 : Hive.box("settings").get(2);
 
   NotesBloc()
       : super(NotesInitial(

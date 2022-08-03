@@ -114,6 +114,19 @@ class SecurityWidget extends StatelessWidget {
                                           PasswordRegistrationSuccessful(
                                               onePassword.text,
                                               helperText.text));
+                                      showDialog(
+                                          context: context,
+                                          builder: ((context) => AlertDialog(
+                                                title: Text(
+                                                    "Пароль ${state.password} успешно установлен"),
+                                                actions: [
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                      child: const Text("ок")),
+                                                ],
+                                              )));
                                     } else {
                                       BlocProvider.of<NotesBloc>(context).add(
                                           PasswordRegistrationError(
