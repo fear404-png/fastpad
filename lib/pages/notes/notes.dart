@@ -50,7 +50,7 @@ class NotesWidget extends StatelessWidget {
                     child: UserAccountsDrawerHeader(
                       decoration: BoxDecoration(color: Colors.green),
                       accountName: Text('Мистер Твистер'),
-                      accountEmail: Text("home@dartflutter.ru"),
+                      accountEmail: Text("ds@ds.g"),
                       currentAccountPicture: Container(
                           decoration: BoxDecoration(
                         shape: BoxShape.rectangle,

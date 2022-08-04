@@ -33,7 +33,8 @@ class NoteEditPage extends StatelessWidget {
             onPressed: () {
               BlocProvider.of<NotesBloc>(context).add(
                   NoteEditEvent(NoteModel(title.text, subtitle.text, id), id));
-              Navigator.pop(context);
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                  "/notes", (Route<dynamic> route) => false);
             },
             child: const Icon(Icons.check),
           ),

@@ -32,11 +32,10 @@ class NoteViewPage extends StatelessWidget {
                                   child: const Text("Нет")),
                               TextButton(
                                   onPressed: () {
-                                    Navigator.pushNamedAndRemoveUntil(
-                                        context, "/notes", (route) => false);
-
                                     BlocProvider.of<NotesBloc>(context)
                                         .add(NoteDeleteEvent(arguments["id"]));
+                                    Navigator.pushNamedAndRemoveUntil(
+                                        context, "/notes", (route) => false);
                                   },
                                   child: const Text("Да")),
                             ],
