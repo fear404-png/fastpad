@@ -1,5 +1,7 @@
-import 'package:fastpad/bloc/bloc/notes_bloc.dart';
-import 'package:fastpad/pages/components/note_list_element.dart';
+import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
+import 'package:fastpad/pages/components/custom_list_tile.dart';
+import 'package:fastpad/pages/components/custom_separator.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,14 +14,21 @@ class NoteListWidget extends StatelessWidget {
     return BlocBuilder<NotesBloc, NotesState>(builder: (context, state) {
       return ListView.separated(
         itemBuilder: (BuildContext context, int index) {
-          return NoteListElementWidget(
-            index: index,
+          return Column(
+            children: [
+              CustomListTile(
+                index: index,
+              ),
+              index == state.notes.length - 1
+                  ? Container(
+                      height: 100,
+                    )
+                  : Container()
+            ],
           );
         },
-        separatorBuilder: (BuildContext context, int index) => const Divider(
-          color: Colors.black,
-          height: 2,
-        ),
+        separatorBuilder: (BuildContext context, int index) =>
+            const CustomSeparator(),
         itemCount: state.notes.length,
       );
     });

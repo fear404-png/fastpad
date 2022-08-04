@@ -22,6 +22,8 @@ abstract class NotesState {
 
   final bool isErrorInPasswordRegistration;
 
+  final isOpenBottomSheet;
+
   const NotesState(
       this.notes,
       this.themeData,
@@ -32,7 +34,8 @@ abstract class NotesState {
       this.fuckIt,
       this.helpText,
       this.erorrTextPasswordRegistration,
-      this.isErrorInPasswordRegistration);
+      this.isErrorInPasswordRegistration,
+      this.isOpenBottomSheet);
 }
 
 class NotesInitial extends NotesState {
@@ -46,5 +49,6 @@ class NotesInitial extends NotesState {
       super.fuckIt,
       super.helpText,
       super.erorrTextPasswordRegistration,
-      super.isErrorInPasswordRegistration);
+      super.isErrorInPasswordRegistration,
+      super.isOpenBottomSheet);
 }

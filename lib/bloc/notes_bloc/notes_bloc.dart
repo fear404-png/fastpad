@@ -30,6 +30,8 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   static double textSizeMultiplier =
       Hive.box("settings").get(2) == null ? 1.1 : Hive.box("settings").get(2);
 
+  static bool isOpenBottomSheet = false;
+
   NotesBloc()
       : super(NotesInitial(
             notes,
@@ -71,7 +73,8 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
             fuckIt,
             helpText,
             erorrTextPasswordRegistration,
-            isErrorInPasswordRegistration)) {
+            isErrorInPasswordRegistration,
+            isOpenBottomSheet)) {
     on<NotesEvent>((event, emit) {
       if (event is NoteAddEvent) {
         notes.add(event.note);
@@ -119,6 +122,8 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         helpText = event.helpText;
         Hive.box("login").put(0, password);
         Hive.box("login").put(1, helpText);
+      } else if (event is ChangeStateBottomSheet) {
+        isOpenBottomSheet = event.isOpen;
       }
 
       emit(NotesInitial(
@@ -161,7 +166,8 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
           fuckIt,
           helpText,
           erorrTextPasswordRegistration,
-          isErrorInPasswordRegistration));
+          isErrorInPasswordRegistration,
+          isOpenBottomSheet));
     });
   }
 }

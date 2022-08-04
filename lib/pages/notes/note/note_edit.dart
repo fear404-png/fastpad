@@ -1,4 +1,4 @@
-import 'package:fastpad/bloc/bloc/notes_bloc.dart';
+import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
 import 'package:fastpad/hive/note_model.dart';
 
 import 'package:flutter/material.dart';
@@ -30,20 +30,28 @@ class NoteEditWidget extends StatelessWidget {
           child: const Icon(Icons.settings),
         )
       ]),
-      body: ListTile(
-        title: TextField(
-          style: Theme.of(context).textTheme.titleLarge,
-          decoration: const InputDecoration(
-            hintText: ("Название"),
-          ),
-          controller: titleController,
-        ),
-        subtitle: TextField(
-          decoration: const InputDecoration(
-              hintText: ("Текст"), border: InputBorder.none),
-          maxLines: null,
-          controller: subtitleController,
-        ),
+      body:  ListView(
+          children: [
+            ListTile(
+              title: TextField(
+                style: Theme.of(context).textTheme.titleLarge,
+                decoration: const InputDecoration(
+                  hintText: ("Название"),
+                ),
+                controller: titleController,
+              ),
+              subtitle: TextField(
+                decoration: const InputDecoration(
+                    hintText: ("Текст"), border: InputBorder.none),
+                maxLines: null,
+                controller: subtitleController,
+              ),
+            ),
+            SizedBox(
+              height: 90,
+            )
+          ],
+        
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

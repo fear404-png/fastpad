@@ -4,7 +4,7 @@ part of 'notes_bloc.dart';
 abstract class NotesEvent {}
 
 class NoteAddEvent extends NotesEvent {
-  NoteModel note;
+  final NoteModel note;
   NoteAddEvent(this.note);
 }
 
@@ -73,4 +73,10 @@ class PasswordRegistrationSuccessful extends NotesEvent {
   final String helpText;
 
   PasswordRegistrationSuccessful(this.password, this.helpText);
+}
+
+class ChangeStateBottomSheet extends NotesEvent {
+  final bool isOpen;
+
+  ChangeStateBottomSheet(this.isOpen);
 }

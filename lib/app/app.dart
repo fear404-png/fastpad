@@ -1,4 +1,4 @@
-import 'package:fastpad/bloc/bloc/notes_bloc.dart';
+import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
 import 'package:fastpad/pages/login.dart';
 import 'package:fastpad/pages/notes/note/note_edit.dart';
 import 'package:fastpad/pages/notes/note/note_view.dart';

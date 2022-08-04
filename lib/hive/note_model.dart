@@ -19,7 +19,6 @@ class NoteModel {
 
   NoteModel(this.title, this.subtitle, this.id) {
     timeEdit = DateTime.now().toString().split(".")[0];
-    timeEdit =
-        "${timeEdit.toString().split(" ")[0]}\n${timeEdit.toString().split(" ")[1]}";
+    timeEdit = timeEdit.toString().split(" ")[0];
   }
 }

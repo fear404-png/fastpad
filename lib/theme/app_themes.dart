@@ -4,7 +4,7 @@ final List<ThemeData> appThemeData = [
   ThemeData(
     colorScheme: const ColorScheme.dark().copyWith(
       secondary: Colors.redAccent,
-      primary: Colors.red,
+      primary: Colors.redAccent,
       onError: Colors.white,
     ),
   ),
