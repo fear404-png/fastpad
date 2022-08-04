@@ -2,8 +2,8 @@ import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NoteViewWidget extends StatelessWidget {
-  const NoteViewWidget({super.key});
+class NoteViewPage extends StatelessWidget {
+  const NoteViewPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,10 @@ class NoteViewWidget extends StatelessWidget {
     return BlocBuilder<NotesBloc, NotesState>(
       builder: (context, state) {
         return Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.inversePrimary,
             actions: [
               TextButton(
                 onPressed: () {
@@ -39,8 +42,10 @@ class NoteViewWidget extends StatelessWidget {
                             ],
                           )));
                 },
-                child: Icon(Icons.delete,
-                    color: Theme.of(context).colorScheme.onError),
+                child: Icon(
+                  Icons.delete,
+                  color: Theme.of(context).colorScheme.inversePrimary,
+                ),
               )
             ],
           ),
@@ -56,8 +61,11 @@ class NoteViewWidget extends StatelessWidget {
               : const Text("Удалено"),
           floatingActionButton: FloatingActionButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/notes/note_edit",
-                    arguments: arguments);
+                Navigator.pushNamed(context, "/notes/note_edit", arguments: {
+                  "title": state.notes[arguments["id"]].title,
+                  "subtitle": state.notes[arguments["id"]].subtitle,
+                  "id": arguments["id"]
+                });
               },
               child: const Icon(Icons.edit)),
         );

@@ -22,7 +22,7 @@ abstract class NotesState {
 
   final bool isErrorInPasswordRegistration;
 
-  final isOpenBottomSheet;
+
 
   const NotesState(
       this.notes,
@@ -35,7 +35,7 @@ abstract class NotesState {
       this.helpText,
       this.erorrTextPasswordRegistration,
       this.isErrorInPasswordRegistration,
-      this.isOpenBottomSheet);
+     );
 }
 
 class NotesInitial extends NotesState {
@@ -50,5 +50,5 @@ class NotesInitial extends NotesState {
       super.helpText,
       super.erorrTextPasswordRegistration,
       super.isErrorInPasswordRegistration,
-      super.isOpenBottomSheet);
+      );
 }

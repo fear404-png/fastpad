@@ -1,7 +1,12 @@
+import 'package:fastpad/bloc/custom_bottom_sheet_bloc/custom_bottom_sheet_bloc.dart';
+import 'package:fastpad/bloc/login_bloc/login_bloc.dart';
 import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
+import 'package:fastpad/bloc/other_settings_bloc/other_settings_bloc.dart';
+import 'package:fastpad/bloc/theme_bloc/theme_bloc.dart';
 import 'package:fastpad/pages/login.dart';
-import 'package:fastpad/pages/notes/note/note_edit.dart';
-import 'package:fastpad/pages/notes/note/note_view.dart';
+import 'package:fastpad/pages/note_edit/note_edit.dart';
+
+import 'package:fastpad/pages/note_view/note_view.dart';
 import 'package:fastpad/pages/notes/notes.dart';
 import 'package:fastpad/pages/notes/notes_setting/change_font.dart';
 import 'package:fastpad/pages/notes/notes_setting/change_theme.dart';
@@ -17,16 +22,24 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NotesBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<NotesBloc>(create: (BuildContext context) => NotesBloc()),
+        BlocProvider<LoginBloc>(create: (BuildContext context) => LoginBloc()),
+        BlocProvider<CustomBottomSheetBloc>(
+            create: (BuildContext context) => CustomBottomSheetBloc()),
+        BlocProvider<OtherSettingsBloc>(
+            create: (BuildContext context) => OtherSettingsBloc()),
+        BlocProvider<ThemeBloc>(create: (BuildContext context) => ThemeBloc()),
+      ],
       child: BlocBuilder<NotesBloc, NotesState>(
         builder: (context, state) {
           return MaterialApp(
             theme: state.themeData,
             routes: {
               "/notes": (context) => const NotesWidget(),
-              "/notes/note_edit": (context) => const NoteEditWidget(),
-              "/notes/note_view": (context) => const NoteViewWidget(),
+              "/notes/note_edit": (context) => const NoteEditPage(),
+              "/notes/note_view": (context) => const NoteViewPage(),
               "/notes/setting": (context) => const NotesSettingWidget(),
               "/notes/setting/change_theme": (context) =>
                   const ChangeThemeWidget(),

@@ -75,8 +75,3 @@ class PasswordRegistrationSuccessful extends NotesEvent {
   PasswordRegistrationSuccessful(this.password, this.helpText);
 }
 
-class ChangeStateBottomSheet extends NotesEvent {
-  final bool isOpen;
-
-  ChangeStateBottomSheet(this.isOpen);
-}

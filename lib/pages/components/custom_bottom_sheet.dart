@@ -1,4 +1,4 @@
-
+import 'package:fastpad/bloc/custom_bottom_sheet_bloc/custom_bottom_sheet_bloc.dart';
 import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class CustomBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<NotesBloc, NotesState>(
+    return BlocBuilder<CustomBottomSheetBloc, CustomBottomSheetState>(
       builder: (context, state) {
         return AnimatedContainer(
           decoration: BoxDecoration(
@@ -29,11 +29,17 @@ class CustomBottomSheet extends StatelessWidget {
           curve: Curves.easeInOut,
           child: ListTile(
             title: TextField(
+              onChanged: (value) =>
+                  BlocProvider.of<CustomBottomSheetBloc>(context)
+                      .add(TitleChangesEvent(title.text)),
               controller: title,
               maxLines: 1,
               decoration: const InputDecoration(hintText: "Заголовок"),
             ),
             subtitle: TextField(
+              onChanged: (value) =>
+                  BlocProvider.of<CustomBottomSheetBloc>(context)
+                      .add(SubtitleChangesEvent(subtitle.text)),
               controller: subtitle,
               maxLines: null,
               decoration: const InputDecoration(

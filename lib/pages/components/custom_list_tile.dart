@@ -1,4 +1,6 @@
+import 'package:fastpad/bloc/custom_bottom_sheet_bloc/custom_bottom_sheet_bloc.dart';
 import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
+import 'package:fastpad/pages/components/custom_bottom_sheet.dart';
 
 import 'package:flutter/material.dart';
 
@@ -67,8 +69,8 @@ class CustomListTile extends StatelessWidget {
           child: InkWell(
             splashColor: Theme.of(context).colorScheme.primary,
             onTap: () {
-              BlocProvider.of<NotesBloc>(context)
-                  .add(ChangeStateBottomSheet(false));
+              BlocProvider.of<CustomBottomSheetBloc>(context)
+                  .add(OpenEvent(false));
               Navigator.pushNamed(context, "/notes/note_view",
                   arguments: {"id": index});
             },

@@ -30,8 +30,6 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   static double textSizeMultiplier =
       Hive.box("settings").get(2) == null ? 1.1 : Hive.box("settings").get(2);
 
-  static bool isOpenBottomSheet = false;
-
   NotesBloc()
       : super(NotesInitial(
             notes,
@@ -73,8 +71,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
             fuckIt,
             helpText,
             erorrTextPasswordRegistration,
-            isErrorInPasswordRegistration,
-            isOpenBottomSheet)) {
+            isErrorInPasswordRegistration)) {
     on<NotesEvent>((event, emit) {
       if (event is NoteAddEvent) {
         notes.add(event.note);
@@ -122,52 +119,49 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         helpText = event.helpText;
         Hive.box("login").put(0, password);
         Hive.box("login").put(1, helpText);
-      } else if (event is ChangeStateBottomSheet) {
-        isOpenBottomSheet = event.isOpen;
       }
-
       emit(NotesInitial(
-          notes,
-          appThemeData[currentTheme].copyWith(
-              textTheme: TextTheme(
-            headline1: appFonts[currentFont].copyWith(
-                fontSize: 97 * textSizeMultiplier, letterSpacing: -1.5),
-            headline2: appFonts[currentFont].copyWith(
-                fontSize: 61 * textSizeMultiplier, letterSpacing: -0.5),
-            headline3: appFonts[currentFont].copyWith(
-              fontSize: 48 * textSizeMultiplier,
-            ),
-            headline4: appFonts[currentFont].copyWith(
-                fontSize: 34 * textSizeMultiplier, letterSpacing: 0.25),
-            headline5: appFonts[currentFont].copyWith(
-              fontSize: 24 * textSizeMultiplier,
-            ),
-            headline6: appFonts[currentFont].copyWith(
-                fontSize: 20 * textSizeMultiplier, letterSpacing: 0.15),
-            subtitle1: appFonts[currentFont].copyWith(
-                fontSize: 16 * textSizeMultiplier, letterSpacing: 0.15),
-            subtitle2: appFonts[currentFont].copyWith(
-                fontSize: 14 * textSizeMultiplier, letterSpacing: 0.1),
-            bodyText1: appFonts[currentFont].copyWith(
-                fontSize: 16 * textSizeMultiplier, letterSpacing: 0.5),
-            bodyText2: appFonts[currentFont].copyWith(
-                fontSize: 14 * textSizeMultiplier, letterSpacing: 0.25),
-            button: appFonts[currentFont].copyWith(
-                fontSize: 14 * textSizeMultiplier, letterSpacing: 1.25),
-            caption: appFonts[currentFont].copyWith(
-                fontSize: 12 * textSizeMultiplier, letterSpacing: 0.4),
-            overline: appFonts[currentFont].copyWith(
-                fontSize: 10 * textSizeMultiplier, letterSpacing: 1.5),
-          ).apply(bodyColor: appThemeData[currentTheme].colorScheme.onError)),
-          textSizeMultiplier,
-          password,
-          isLogin,
-          isSecure,
-          fuckIt,
-          helpText,
-          erorrTextPasswordRegistration,
-          isErrorInPasswordRegistration,
-          isOpenBottomSheet));
+        notes,
+        appThemeData[currentTheme].copyWith(
+            textTheme: TextTheme(
+          headline1: appFonts[currentFont]
+              .copyWith(fontSize: 97 * textSizeMultiplier, letterSpacing: -1.5),
+          headline2: appFonts[currentFont]
+              .copyWith(fontSize: 61 * textSizeMultiplier, letterSpacing: -0.5),
+          headline3: appFonts[currentFont].copyWith(
+            fontSize: 48 * textSizeMultiplier,
+          ),
+          headline4: appFonts[currentFont]
+              .copyWith(fontSize: 34 * textSizeMultiplier, letterSpacing: 0.25),
+          headline5: appFonts[currentFont].copyWith(
+            fontSize: 24 * textSizeMultiplier,
+          ),
+          headline6: appFonts[currentFont]
+              .copyWith(fontSize: 20 * textSizeMultiplier, letterSpacing: 0.15),
+          subtitle1: appFonts[currentFont]
+              .copyWith(fontSize: 16 * textSizeMultiplier, letterSpacing: 0.15),
+          subtitle2: appFonts[currentFont]
+              .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 0.1),
+          bodyText1: appFonts[currentFont]
+              .copyWith(fontSize: 16 * textSizeMultiplier, letterSpacing: 0.5),
+          bodyText2: appFonts[currentFont]
+              .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 0.25),
+          button: appFonts[currentFont]
+              .copyWith(fontSize: 14 * textSizeMultiplier, letterSpacing: 1.25),
+          caption: appFonts[currentFont]
+              .copyWith(fontSize: 12 * textSizeMultiplier, letterSpacing: 0.4),
+          overline: appFonts[currentFont]
+              .copyWith(fontSize: 10 * textSizeMultiplier, letterSpacing: 1.5),
+        ).apply(bodyColor: appThemeData[currentTheme].colorScheme.onError)),
+        textSizeMultiplier,
+        password,
+        isLogin,
+        isSecure,
+        fuckIt,
+        helpText,
+        erorrTextPasswordRegistration,
+        isErrorInPasswordRegistration,
+      ));
     });
   }
 }
