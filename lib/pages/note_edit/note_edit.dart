@@ -18,7 +18,8 @@ class NoteEditPage extends StatelessWidget {
 
     subtitle.text = arguments['subtitle'];
 
-    final int id = arguments['id'];
+    final int id =
+        arguments['id'] ?? context.read<NotesBloc>().state.notes.length - 1;
     return BlocBuilder<NotesBloc, NotesState>(
       builder: (context, state) {
         return Scaffold(
