@@ -40,23 +40,28 @@ class NoteEditPage extends StatelessWidget {
             },
             child: const Icon(Icons.check),
           ),
-          body: Column(
-            children: [
-              ListTile(
-                title: TextField(
-                  controller: title,
-                  maxLines: 1,
-                  decoration: const InputDecoration(hintText: "Заголовок"),
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                ListTile(
+                  title: TextField(
+                    controller: title,
+                    maxLines: 1,
+                    decoration: const InputDecoration(hintText: "Заголовок"),
+                  ),
+                  subtitle: TextField(
+                    controller: subtitle,
+                    maxLines: null,
+                    decoration: const InputDecoration(
+                        hintText: "Текст", border: InputBorder.none),
+                  ),
+                  style: ListTileStyle.list,
                 ),
-                subtitle: TextField(
-                  controller: subtitle,
-                  maxLines: null,
-                  decoration: const InputDecoration(
-                      hintText: "Текст", border: InputBorder.none),
-                ),
-                style: ListTileStyle.list,
-              ),
-            ],
+                const SizedBox(
+                  height: 100,
+                )
+              ],
+            ),
           ),
         );
       },

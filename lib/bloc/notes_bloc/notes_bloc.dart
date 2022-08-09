@@ -60,10 +60,18 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     on<NotesEvent>((event, emit) {
       if (event is NoteAddEvent) {
         notes.add(event.note);
-        Hive.box<NoteModel>("notes").add(event.note);
+        Hive.box<NoteModel>("notes").clear();
+
+        for (var element in notes) {
+          Hive.box<NoteModel>("notes").add(element);
+        }
       } else if (event is NoteDeleteEvent) {
         notes.removeAt(event.id);
-        Hive.box<NoteModel>("notes").deleteAt(event.id);
+        Hive.box<NoteModel>("notes").clear();
+
+        for (var element in notes) {
+          Hive.box<NoteModel>("notes").add(element);
+        }
       } else if (event is NoteEditEvent) {
         notes[event.id] = event.note;
 

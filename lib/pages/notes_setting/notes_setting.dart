@@ -40,14 +40,6 @@ class NotesSettingPage extends StatelessWidget {
           );
         },
       ),
-      ListTile(
-        onTap: () {
-          Navigator.pushNamed(context, "/notes/setting/security");
-        },
-        title: const Text("Безопасность"),
-        leading: const Icon(Icons.lock),
-        trailing: const Icon(Icons.arrow_right),
-      ),
     ];
 
     return Scaffold(

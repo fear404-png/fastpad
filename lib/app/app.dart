@@ -1,8 +1,6 @@
 import 'package:fastpad/bloc/custom_bottom_sheet_bloc/custom_bottom_sheet_bloc.dart';
 
 import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
-import 'package:fastpad/bloc/other_settings_bloc/other_settings_bloc.dart';
-import 'package:fastpad/bloc/theme_bloc/theme_bloc.dart';
 
 import 'package:fastpad/pages/note_edit/note_edit.dart';
 
@@ -26,9 +24,6 @@ class App extends StatelessWidget {
         BlocProvider<NotesBloc>(create: (BuildContext context) => NotesBloc()),
         BlocProvider<CustomBottomSheetBloc>(
             create: (BuildContext context) => CustomBottomSheetBloc()),
-        BlocProvider<OtherSettingsBloc>(
-            create: (BuildContext context) => OtherSettingsBloc()),
-        BlocProvider<ThemeBloc>(create: (BuildContext context) => ThemeBloc()),
       ],
       child: BlocBuilder<NotesBloc, NotesState>(
         builder: (context, state) {
