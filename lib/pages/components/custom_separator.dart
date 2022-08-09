@@ -9,7 +9,7 @@ class CustomSeparator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        color: Theme.of(context).colorScheme.primary,
+        color: Colors.black,
         height: 1,
       ),
     );

@@ -2,8 +2,8 @@ import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class NotesSettingWidget extends StatelessWidget {
-  const NotesSettingWidget({super.key});
+class NotesSettingPage extends StatelessWidget {
+  const NotesSettingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,12 @@ class NotesSettingWidget extends StatelessWidget {
     ];
 
     return Scaffold(
-        appBar: AppBar(title: const Text("Настройки блокнота")),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        appBar: AppBar(
+          title: const Text("Настройки блокнота"),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          foregroundColor: Theme.of(context).colorScheme.inversePrimary,
+        ),
         body: ListView.separated(
             itemBuilder: (BuildContext context, int index) {
               return notesSettingWidgets[index];

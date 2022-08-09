@@ -75,3 +75,8 @@ class PasswordRegistrationSuccessful extends NotesEvent {
   PasswordRegistrationSuccessful(this.password, this.helpText);
 }
 
+class PinNoteEvent extends NotesEvent {
+  final int id;
+
+  PinNoteEvent(this.id);
+}

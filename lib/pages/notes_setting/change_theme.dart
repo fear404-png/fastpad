@@ -9,10 +9,12 @@ class ChangeThemeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       appBar: AppBar(
         title: const Text("Выбор Темы"),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: ListView.separated(
           itemBuilder: (context, index) {

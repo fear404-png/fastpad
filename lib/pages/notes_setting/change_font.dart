@@ -1,4 +1,5 @@
 import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
+import 'package:fastpad/pages/components/custom_separator.dart';
 import 'package:fastpad/theme/app_fonts.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +11,11 @@ class ChangeFontWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       appBar: AppBar(
         title: const Text("Выбор шрифта"),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        foregroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: ListView.separated(
           itemBuilder: (context, index) => ListTile(
@@ -23,10 +27,7 @@ class ChangeFontWidget extends StatelessWidget {
                 onTap: () => BlocProvider.of<NotesBloc>(context)
                     .add(ChangeFontEvent(index)),
               ),
-          separatorBuilder: (context, index) => const Divider(
-                color: Colors.black,
-                height: 2,
-              ),
+          separatorBuilder: (context, index) => const CustomSeparator(),
           itemCount: appFonts.length),
     );
   }

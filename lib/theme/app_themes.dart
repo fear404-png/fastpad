@@ -10,33 +10,43 @@ final List<ThemeData> appThemeData = [
   ),
   ThemeData(
     colorScheme: const ColorScheme.dark().copyWith(
-        secondary: Colors.green,
-        primary: Colors.green,
-        onBackground: Colors.black,
-        surface: Colors.black,
-        onSurface: Colors.green,
-        background: Colors.black,
+      secondary: Colors.green,
+      primary: Colors.green,
+      onBackground: Colors.black,
+      surface: Colors.black,
+      onSurface: Colors.green,
+      background: Colors.black,
+      onError: Colors.green,
+      inverseSurface: Colors.green,
+      inversePrimary: Colors.black,
+    ),
+  ),
+  ThemeData(
+    colorScheme: const ColorScheme.light(
+        primary: Colors.black,
+        secondary: Colors.white,
+        surface: Colors.white,
+        inversePrimary: Colors.white,
+        onBackground: Colors.white,
         onError: Colors.white,
-        brightness: Brightness.dark),
+        inverseSurface: Colors.black),
   ),
-  ThemeData(
-    colorScheme: const ColorScheme.light().copyWith(
-        primary: Colors.redAccent,
-        secondary: Colors.redAccent,
-        onError: Colors.black),
-  ),
-  ThemeData(
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.red)
-          .copyWith(onError: Colors.black)),
   ThemeData(
       colorScheme:
-          const ColorScheme.highContrastDark().copyWith(onError: Colors.white))
+          ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 102, 86, 36))
+              .copyWith(onError: Colors.black)),
+  ThemeData(
+      colorScheme: const ColorScheme.dark(
+          inversePrimary: Colors.black,
+          primary: Colors.amberAccent,
+          inverseSurface: Colors.pinkAccent,
+          secondary: Colors.lightBlueAccent))
 ];
 
 final List<String> appThemeName = [
-  "Темная Стандарт",
-  "Терминал",
   "Стандарт",
-  "Агрессия ",
-  "Спокойствие"
+  "Терминал",
+  "Траур",
+  "Защита зрения",
+  "Киберпанк"
 ];

@@ -1,8 +1,7 @@
 import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
 import 'package:fastpad/hive/note_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NoteEditPage extends StatelessWidget {
@@ -19,20 +18,23 @@ class NoteEditPage extends StatelessWidget {
     subtitle.text = arguments['subtitle'];
 
     final int id =
-        arguments['id'] ?? context.read<NotesBloc>().state.notes.length - 1;
+        arguments['id'] ?? context.read<NotesBloc>().state.notes.length;
     return BlocBuilder<NotesBloc, NotesState>(
       builder: (context, state) {
         return Scaffold(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           appBar: AppBar(
-            actions: [],
+            actions: const [],
             backgroundColor: Theme.of(context).colorScheme.primary,
             foregroundColor: Theme.of(context).colorScheme.inversePrimary,
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () {
-              BlocProvider.of<NotesBloc>(context).add(
-                  NoteEditEvent(NoteModel(title.text, subtitle.text, id), id));
+              id != state.notes.length
+                  ? BlocProvider.of<NotesBloc>(context).add(NoteEditEvent(
+                      NoteModel(title.text, subtitle.text, id), id))
+                  : BlocProvider.of<NotesBloc>(context).add(
+                      NoteAddEvent(NoteModel(title.text, subtitle.text, id)));
               Navigator.of(context).pushNamedAndRemoveUntil(
                   "/notes", (Route<dynamic> route) => false);
             },

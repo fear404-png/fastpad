@@ -23,15 +23,8 @@ class NotesWidget extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/notes/setting");
-                  },
-                  child: Icon(
-                    Icons.search,
-                    color: Theme.of(context).colorScheme.inversePrimary,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
+                    BlocProvider.of<CustomBottomSheetBloc>(context)
+                        .add(OpenEvent(false));
                     Navigator.pushNamed(context, "/notes/setting");
                   },
                   child: Icon(
@@ -41,123 +34,101 @@ class NotesWidget extends StatelessWidget {
                 ),
               ],
             ),
-            drawer: Drawer(
-              child: ListView(
-                children: [
-                  DrawerHeader(
-                    margin: EdgeInsets.zero,
-                    padding: EdgeInsets.zero,
-                    child: UserAccountsDrawerHeader(
-                      decoration: BoxDecoration(color: Colors.green),
-                      accountName: Text('Мистер Твистер'),
-                      accountEmail: Text("ds@ds.g"),
-                      currentAccountPicture: Container(
-                          decoration: BoxDecoration(
-                        shape: BoxShape.rectangle,
-                        color: Colors.red,
-                      )),
-                    ),
-                  ),
-                  ListTile(
-                      title: new Text("О себе"),
-                      leading: Icon(Icons.account_box),
-                      onTap: () {}),
-                  ListTile(
-                      title: new Text("Настройки"),
-                      leading: Icon(Icons.settings),
-                      onTap: () {})
-                ],
-              ),
-            ),
             bottomSheet: CustomBottomSheet(),
             body: const NoteListWidget(),
-            floatingActionButton:
-                BlocBuilder<CustomBottomSheetBloc, CustomBottomSheetState>(
-              builder: (context, state) {
-                return state.isOpenBottomSheet
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          FloatingActionButton(
-                            mini: true,
-                            onPressed: () {
-                              BlocProvider.of<CustomBottomSheetBloc>(context)
-                                  .add(OpenEvent(
-                                      !BlocProvider.of<CustomBottomSheetBloc>(
-                                              context)
-                                          .state
-                                          .isOpenBottomSheet));
-                              Navigator.pushNamed(context, "/notes/note_edit",
-                                  arguments: {
-                                    "title": state.title,
-                                    "subtitle": state.subtitle
-                                  });
-                            },
-                            child: const Icon(
-                              Icons.fullscreen,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          FloatingActionButton(
-                            mini: true,
-                            onPressed: () {
-                              BlocProvider.of<CustomBottomSheetBloc>(context)
-                                  .add(OpenEvent(
-                                      !BlocProvider.of<CustomBottomSheetBloc>(
-                                              context)
-                                          .state
-                                          .isOpenBottomSheet));
-                            },
-                            child: const Icon(
-                              Icons.arrow_downward_rounded,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          FloatingActionButton(
-                            mini: true,
-                            onPressed: () {
-                              BlocProvider.of<CustomBottomSheetBloc>(context)
-                                  .add(OpenEvent(
-                                      !BlocProvider.of<CustomBottomSheetBloc>(
-                                              context)
-                                          .state
-                                          .isOpenBottomSheet));
-                              BlocProvider.of<NotesBloc>(context).add(
-                                  NoteAddEvent(NoteModel(
-                                      state.title,
-                                      state.subtitle,
-                                      BlocProvider.of<NotesBloc>(context)
-                                              .state
-                                              .notes
-                                              .length -
-                                          1)));
-                              BlocProvider.of<CustomBottomSheetBloc>(context)
-                                  .add(ClearEvent());
-                            },
-                            child: const Icon(
-                              Icons.check,
-                            ),
-                          ),
-                        ],
-                      )
-                    : FloatingActionButton(
-                        onPressed: () {
-                          BlocProvider.of<CustomBottomSheetBloc>(context).add(
-                              OpenEvent(!BlocProvider.of<CustomBottomSheetBloc>(
-                                      context)
+            floatingActionButton: const NotesButtonsWidget());
+      },
+    );
+  }
+}
+
+class NotesButtonsWidget extends StatelessWidget {
+  const NotesButtonsWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<CustomBottomSheetBloc, CustomBottomSheetState>(
+      builder: (context, state) {
+        return state.isOpenBottomSheet
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FloatingActionButton(
+                    mini: true,
+                    onPressed: () {
+                      BlocProvider.of<CustomBottomSheetBloc>(context).add(
+                          OpenEvent(
+                              !BlocProvider.of<CustomBottomSheetBloc>(context)
                                   .state
                                   .isOpenBottomSheet));
-                        },
-                        child: const Icon(
-                          Icons.add,
-                        ),
-                      );
-              },
-            ));
+                      Navigator.pushNamed(context, "/notes/note_edit",
+                          arguments: {
+                            "title": state.title,
+                            "subtitle": state.subtitle
+                          });
+                    },
+                    child: const Icon(
+                      Icons.fullscreen,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  FloatingActionButton(
+                    mini: true,
+                    onPressed: () {
+                      BlocProvider.of<CustomBottomSheetBloc>(context).add(
+                          OpenEvent(
+                              !BlocProvider.of<CustomBottomSheetBloc>(context)
+                                  .state
+                                  .isOpenBottomSheet));
+                    },
+                    child: const Icon(
+                      Icons.arrow_downward_rounded,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  FloatingActionButton(
+                    mini: true,
+                    onPressed: () {
+                      BlocProvider.of<CustomBottomSheetBloc>(context).add(
+                          OpenEvent(
+                              !BlocProvider.of<CustomBottomSheetBloc>(context)
+                                  .state
+                                  .isOpenBottomSheet));
+                      BlocProvider.of<NotesBloc>(context).add(NoteAddEvent(
+                          NoteModel(
+                              state.title,
+                              state.subtitle,
+                              BlocProvider.of<NotesBloc>(context)
+                                      .state
+                                      .notes
+                                      .length -
+                                  1)));
+                      BlocProvider.of<CustomBottomSheetBloc>(context)
+                          .add(ClearEvent());
+                    },
+                    child: const Icon(
+                      Icons.check,
+                    ),
+                  ),
+                ],
+              )
+            : FloatingActionButton(
+                onPressed: () {
+                  BlocProvider.of<CustomBottomSheetBloc>(context).add(OpenEvent(
+                      !BlocProvider.of<CustomBottomSheetBloc>(context)
+                          .state
+                          .isOpenBottomSheet));
+                },
+                child: const Icon(
+                  Icons.add,
+                ),
+              );
       },
     );
   }

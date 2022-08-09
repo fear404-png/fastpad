@@ -1,6 +1,5 @@
 import 'package:fastpad/bloc/custom_bottom_sheet_bloc/custom_bottom_sheet_bloc.dart';
 import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
-import 'package:fastpad/pages/components/custom_bottom_sheet.dart';
 
 import 'package:flutter/material.dart';
 
@@ -21,29 +20,21 @@ class CustomListTile extends StatelessWidget {
             children: [
               SlidableAction(
                 foregroundColor: Theme.of(context).colorScheme.primary,
-                onPressed: (context) {
-                  BlocProvider.of<NotesBloc>(context)
-                      .add(NoteDeleteEvent(index));
-
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(
-                      'Запись ${state.notes[index].title} удалена',
-                      style: Theme.of(context).textTheme.overline,
-                    ),
-                    duration: const Duration(milliseconds: 800),
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                  ));
-                },
-                backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-                icon: Icons.delete,
-                label: 'Удалить',
-              ),
-              SlidableAction(
-                foregroundColor: Theme.of(context).colorScheme.primary,
                 onPressed: (context) {},
                 backgroundColor: Theme.of(context).colorScheme.inversePrimary,
                 icon: Icons.share,
                 label: 'Поделиться',
+              ),
+              SlidableAction(
+                foregroundColor: Theme.of(context).colorScheme.primary,
+                onPressed: (context) {
+                  BlocProvider.of<NotesBloc>(context).add(PinNoteEvent(index));
+                },
+                backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+                icon: state.notes[index].isLock
+                    ? Icons.heart_broken
+                    : Icons.favorite,
+                label: state.notes[index].isLock ? 'Открепить' : 'Закрепить',
               ),
             ],
           ),
@@ -52,17 +43,50 @@ class CustomListTile extends StatelessWidget {
             children: [
               SlidableAction(
                 foregroundColor: Theme.of(context).colorScheme.primary,
-                onPressed: (context) {},
+                onPressed: (context) {
+                  showDialog(
+                      context: context,
+                      builder: ((context) => AlertDialog(
+                            title: const Text("Хотите удалить запись?"),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text("Нет")),
+                              TextButton(
+                                  onPressed: () {
+                                    BlocProvider.of<NotesBloc>(context)
+                                        .add(NoteDeleteEvent(index));
+                                    Navigator.pop(context);
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: RichText(
+                                        text: TextSpan(
+                                            text:
+                                                'Запись ${state.notes[index].title} удалена',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .overline
+                                                ?.copyWith(
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .inversePrimary)),
+                                        maxLines: 2,
+                                      ),
+                                      duration:
+                                          const Duration(milliseconds: 800),
+                                      backgroundColor:
+                                          Theme.of(context).colorScheme.primary,
+                                    ));
+                                  },
+                                  child: const Text("Да")),
+                            ],
+                          )));
+                },
                 backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-                icon: Icons.favorite,
-                label: 'Закрепить',
-              ),
-              SlidableAction(
-                foregroundColor: Theme.of(context).colorScheme.primary,
-                onPressed: (context) {},
-                backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-                icon: Icons.settings,
-                label: 'Настройки',
+                icon: Icons.delete,
+                label: 'Удалить',
               ),
             ],
           ),
@@ -88,11 +112,14 @@ class CustomListTile extends StatelessWidget {
                       height: 30,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.favorite,
-                        size: 20, color: Theme.of(context).colorScheme.primary),
-                  ),
+                  state.notes[index].isLock
+                      ? Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Icon(Icons.favorite,
+                              size: 20,
+                              color: Theme.of(context).colorScheme.primary),
+                        )
+                      : Container(),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -102,7 +129,13 @@ class CustomListTile extends StatelessWidget {
                           RichText(
                             text: TextSpan(
                                 text: state.notes[index].title,
-                                style: Theme.of(context).textTheme.titleMedium),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .inverseSurface)),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -112,7 +145,13 @@ class CustomListTile extends StatelessWidget {
                           RichText(
                             text: TextSpan(
                                 text: state.notes[index].subtitle,
-                                style: Theme.of(context).textTheme.bodySmall),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .inverseSurface)),
                             maxLines: 3,
                             overflow: TextOverflow.fade,
                           ),

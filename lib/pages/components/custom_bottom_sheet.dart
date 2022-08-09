@@ -1,5 +1,5 @@
 import 'package:fastpad/bloc/custom_bottom_sheet_bloc/custom_bottom_sheet_bloc.dart';
-import 'package:fastpad/bloc/notes_bloc/notes_bloc.dart';
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';

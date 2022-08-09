@@ -8,19 +8,7 @@ abstract class NotesState {
 
   final double fontSizeMultiplier;
 
-  final String password;
 
-  final String erorrTextPasswordRegistration;
-
-  final String helpText;
-
-  final bool isLogin;
-
-  final bool isSecure;
-
-  final bool fuckIt;
-
-  final bool isErrorInPasswordRegistration;
 
 
 
@@ -28,13 +16,7 @@ abstract class NotesState {
       this.notes,
       this.themeData,
       this.fontSizeMultiplier,
-      this.password,
-      this.isLogin,
-      this.isSecure,
-      this.fuckIt,
-      this.helpText,
-      this.erorrTextPasswordRegistration,
-      this.isErrorInPasswordRegistration,
+
      );
 }
 
@@ -43,12 +25,6 @@ class NotesInitial extends NotesState {
       super.notes,
       super.themeData,
       super.fontSizeMultiplier,
-      super.password,
-      super.isLogin,
-      super.isSecure,
-      super.fuckIt,
-      super.helpText,
-      super.erorrTextPasswordRegistration,
-      super.isErrorInPasswordRegistration,
+  
       );
 }
