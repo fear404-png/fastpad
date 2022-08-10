@@ -6,6 +6,5 @@ final List<TextStyle> appFonts = [
   const TextStyle(fontFamily: "Montserrat"),
   const TextStyle(fontFamily: "Roboto"),
   const TextStyle(fontFamily: "Rubik"),
-  const TextStyle(fontFamily: "RubikGlitch"),
   const TextStyle(fontFamily: "UbuntuMono"),
 ];
