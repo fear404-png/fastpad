@@ -20,7 +20,7 @@ class NoteListWidget extends StatelessWidget {
                 index: index,
               ),
               index == state.notes.length - 1
-                  ? Container(
+                  ? const SizedBox(
                       height: 100,
                     )
                   : Container()

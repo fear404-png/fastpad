@@ -7,11 +7,9 @@ class CustomSeparator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        color: Colors.black,
-        height: 1,
-      ),
+    return const Divider(
+      color: Colors.black,
+      height: 2,
     );
   }
 }

@@ -17,6 +17,8 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   static double textSizeMultiplier =
       Hive.box("settings").get(2) == null ? 1.1 : Hive.box("settings").get(2);
 
+  static bool isFastNote = false;
+
   NotesBloc()
       : super(NotesInitial(
           notes,

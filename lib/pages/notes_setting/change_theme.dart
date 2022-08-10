@@ -29,7 +29,7 @@ class ChangeThemeWidget extends StatelessWidget {
           },
           separatorBuilder: (context, index) {
             return const Divider(
-              color: Colors.black,
+              color: Color.fromARGB(255, 3, 2, 2),
               height: 2,
             );
           },

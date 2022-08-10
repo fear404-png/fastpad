@@ -23,29 +23,31 @@ class CustomBottomSheet extends StatelessWidget {
                   top: BorderSide(
                       width: 1, color: Theme.of(context).colorScheme.primary))),
           height: state.isOpenBottomSheet
-              ? MediaQuery.of(context).size.height / 2
+              ? MediaQuery.of(context).size.height / 4
               : 0,
           duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
-          child: ListTile(
-            title: TextField(
-              onChanged: (value) =>
-                  BlocProvider.of<CustomBottomSheetBloc>(context)
-                      .add(TitleChangesEvent(title.text)),
-              controller: title,
-              maxLines: 1,
-              decoration: const InputDecoration(hintText: "Заголовок"),
+          child: SingleChildScrollView(
+            child: ListTile(
+              title: TextField(
+                onChanged: (value) =>
+                    BlocProvider.of<CustomBottomSheetBloc>(context)
+                        .add(TitleChangesEvent(title.text)),
+                controller: title,
+                maxLines: 1,
+                decoration: const InputDecoration(hintText: "Заголовок"),
+              ),
+              subtitle: TextField(
+                onChanged: (value) =>
+                    BlocProvider.of<CustomBottomSheetBloc>(context)
+                        .add(SubtitleChangesEvent(subtitle.text)),
+                controller: subtitle,
+                maxLines: null,
+                decoration: const InputDecoration(
+                    hintText: "Текст", border: InputBorder.none),
+              ),
+              style: ListTileStyle.list,
             ),
-            subtitle: TextField(
-              onChanged: (value) =>
-                  BlocProvider.of<CustomBottomSheetBloc>(context)
-                      .add(SubtitleChangesEvent(subtitle.text)),
-              controller: subtitle,
-              maxLines: null,
-              decoration: const InputDecoration(
-                  hintText: "Текст", border: InputBorder.none),
-            ),
-            style: ListTileStyle.list,
           ),
         );
       },
