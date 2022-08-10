@@ -12,7 +12,7 @@ part 'notes_state.dart';
 
 class NotesBloc extends Bloc<NotesEvent, NotesState> {
   static List<NoteModel> notes = Hive.box<NoteModel>("notes").values.toList();
-  static int currentFont = Hive.box("settings").get(0) ?? 6;
+  static int currentFont = Hive.box("settings").get(0) ?? 5;
   static int currentTheme = Hive.box("settings").get(1) ?? 0;
   static double textSizeMultiplier =
       Hive.box("settings").get(2) == null ? 1.1 : Hive.box("settings").get(2);

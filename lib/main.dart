@@ -16,6 +16,7 @@ void main() async {
 
   await Hive.openBox<NoteModel>("notes");
 
+
   const app = App();
   runApp(app);
 }
